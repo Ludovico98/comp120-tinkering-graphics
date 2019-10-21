@@ -33,7 +33,7 @@ class Error(enum.Enum):
 
 
 # This message dict will store all messages to send to the end-user
-# to avoid entangling the main loop with literals. Use enum objects 
+# to avoid entangling the main loop with literals. Use enum objects
 # and string literals as keys.
 MESSAGE = {
     Guess.EQUAL:  "You win!\nWell done!",
@@ -70,14 +70,17 @@ def check_guess(target_number, guessed_number):
         Guess enum object.
     """
 
-    assert(type(target_number) is int and type(guessed_number) is int)
+    assert(isinstance(target_number, int) and isinstance(guessed_number, int))
 
+    information = None
     if target_number == guessed_number:
-        return Guess.EQUAL
+        information = Guess.EQUAL
     elif target_number > guessed_number:
-        return Guess.HIGHER
-    elif target_number < guessed_number:
-        return Guess.LOWER
+        information = Guess.HIGHER
+    else:
+        information = Guess.LOWER
+
+    return information
 
 
 def validate(expected_integer):
@@ -85,21 +88,26 @@ def validate(expected_integer):
     of whether it is higher, lower, or equal.
 
     Args:
-        expected_integer (str): an integer input by the end-user to 
+        expected_integer (str): an integer input by the end-user to
             be checked
     Returns:
         If valid, an int. Error enum object otherwise.
     """
 
+    return_value = None
+
     try:
         expected_integer = int(expected_integer)
-    except ValueError:
-        return Error.NOT_A_DIGIT
 
-    if MIN_VALUE < expected_integer <= MAX_VALUE:
-        return expected_integer
-    else:
-        return Error.OUTSIDE_RANGE
+        if MIN_VALUE < expected_integer <= MAX_VALUE:
+            return_value = expected_integer
+        else:
+            return_value = Error.OUTSIDE_RANGE
+
+    except ValueError:
+        return_value = Error.NOT_A_DIGIT
+
+    return return_value
 
 
 def main():
@@ -114,7 +122,7 @@ def main():
         print_message("Request_Input")
         user_input = input()
         validated_user_input = validate(user_input)
-        if type(validated_user_input) is Error:
+        if isinstance(validated_user_input, Error):
             print_message(validated_user_input)
             continue
 
