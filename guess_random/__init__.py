@@ -1,23 +1,41 @@
+"""Generates a random number and then prompts the
+end-user to guess what that number is. It will
+repeat until the end-user produces a correct guess.
+Then, the script will terminate.
+"""
+
 import random
 import enum
+
+__author__ = "Michael Scott"
+__copyright__ = "Copyright 2019, Falmouth University"
+__license__ = "MIT"
+__version__ = "1.0"
+__url__ = "https://github.com/Adrir/comp120-tinkering-graphics"
 
 MAX_VALUE = 100
 MIN_VALUE = 0
 
 
 class Guess(enum.Enum):
+    """An enumeration for reporting the accuracy of
+    guesses, and what the end-user should do next."""
     EQUAL = enum.auto()
     LOWER = enum.auto()
     HIGHER = enum.auto()
 
 
 class Error(enum.Enum):
+    """An enumeration for identifying types of error."""
     NOT_A_DIGIT = enum.auto()
     OUTSIDE_RANGE = enum.auto()
     UNKNOWN = enum.auto()
 
 
-message = {
+# This message dict will store all messages to send to the end-user
+# to avoid entangling the main loop with literals. Use enum objects 
+# and string literals as keys.
+MESSAGE = {
     Guess.EQUAL:  "You win!\nWell done!",
     Guess.LOWER: "Try one more time, a bit lower!",
     Guess.HIGHER: "Try one more time, a bit higher!",
@@ -31,10 +49,29 @@ message = {
 
 
 def print_message(message_id=Error.UNKNOWN):
-    print(message[message_id])
+    """Print the message associated with the identifier.
+
+    Args:
+        message_id: the id of message in the MESSAGE dict (default Error.UNKNOWN),
+            could be a string, an Error enum, or a Guess enum.
+    """
+
+    print(MESSAGE[message_id])
 
 
 def check_guess(target_number, guessed_number):
+    """Check if the guessed number is correct, and return an indication
+    of whether it is higher, lower, or equal.
+
+    Args:
+        target_number (int): the number to be guessed
+        guessed_number (int): the number the end-user has just guessed
+    Returns:
+        Guess enum object.
+    """
+
+    assert(type(target_number) is int and type(guessed_number) is int)
+
     if target_number == guessed_number:
         return Guess.EQUAL
     elif target_number > guessed_number:
@@ -44,6 +81,16 @@ def check_guess(target_number, guessed_number):
 
 
 def validate(expected_integer):
+    """Check if the guessed number is correct, and return an indication
+    of whether it is higher, lower, or equal.
+
+    Args:
+        expected_integer (str): an integer input by the end-user to 
+            be checked
+    Returns:
+        If valid, an int. Error enum object otherwise.
+    """
+
     try:
         expected_integer = int(expected_integer)
     except ValueError:
@@ -55,21 +102,28 @@ def validate(expected_integer):
         return Error.OUTSIDE_RANGE
 
 
-random_number = random.randrange(MIN_VALUE, MAX_VALUE + 1)              # Include max number
-print_message("Generated_Number")
+def main():
+    """Main loop for program execution"""
 
-guessed = False
-while not guessed:
+    random_number = random.randrange(MIN_VALUE, MAX_VALUE + 1)              # Include max number
+    print_message("Generated_Number")
 
-    print_message("Request_Input")
-    user_input = input()
-    validated_user_input = validate(user_input)
-    if type(validated_user_input) is Error:
-        print_message(validated_user_input)
-        continue
+    guessed = False
+    while not guessed:
 
-    outcome = check_guess(random_number, validated_user_input)
-    if outcome is Guess.EQUAL:
-        guessed = True
+        print_message("Request_Input")
+        user_input = input()
+        validated_user_input = validate(user_input)
+        if type(validated_user_input) is Error:
+            print_message(validated_user_input)
+            continue
 
-    print_message(outcome)
+        outcome = check_guess(random_number, validated_user_input)
+        if outcome is Guess.EQUAL:
+            guessed = True
+
+        print_message(outcome)
+
+
+if __name__ == "__main__":
+    main()
