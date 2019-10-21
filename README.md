@@ -4,7 +4,7 @@
 Prepared by Michael [Adrir](https://github.com/Adrir) Scott and Lord John [SnugglingBunny](https://github.com/SnugglinBunny) Rock
 
 This code has been written as part of the Tinkering Graphics tasks in the COMP120
-module at Falmouth University. The briefs which has been tackled are the *random 
+module at Falmouth University. The briefs which have been tackled are the *random 
 number game* brief (mostly by Michael) and the *appropriation pop art* briefs
 (mostly by John). Pair programming was practiced where appropriate.
 
