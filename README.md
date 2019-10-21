@@ -9,7 +9,7 @@ game* brief.
 
 ## Instructions
 
-There is a folder entitled guess_random, which contains a file called __init__.py. 
+There is a folder entitled guess_random, which contains a file called \__init__.py. 
 Simply, execute this file as a python script to run the game. 
 
 From the root folder:
