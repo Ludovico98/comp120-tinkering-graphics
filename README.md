@@ -1,48 +1,51 @@
-# Tinkering Graphics Assignment
-## Python Code for Re-purposing Graphics Algorithms
 
-Prepared by Michael [Adrir](https://github.com/Adrir) Scott and Lord John [SnugglingBunny](https://github.com/SnugglinBunny) Rock
+Prepared by Ludovico Bitti
 
-This code has been written as part of the Tinkering Graphics tasks in the COMP120
-module at Falmouth University. The briefs which have been tackled are the *random 
-number game* brief (mostly by Michael) and the *appropriation pop art* briefs
-(mostly by John). Pair programming was practiced where appropriate.
+This code has been written as part of the Tinkering Graphics tasks in the COMP120 module at Falmouth University.
 
-## Instructions
+---------------------------------------------------------------------------------------------------------
 
-Python version 3 is required for all projects.
+INSTRUCTIONS 
 
-### Random Number Game
+Python version 3.6 is required for all projects.
 
-There is a folder entitled guess_random, which contains a file called \__init__.py. 
-Simply, execute this file as a python script to run the game. 
+---------------------------------------------------------------------------------------------------------
+LEVEL_GENERATOR
+
+There is a folder entitled level_generator, which contains a file called Graphics2.2.py, execute this file as a python script to run the game.
 
 From the root folder:
 
-`python guess_random/__init__.py`
+level_generator\Graphics2.2.py
 
-This game only requires the terminal to play.
+This program only requires the terminal to run
 
-### Appropriation Pop Art
+---------------------------------------------------------------------------------------------------------
+APPROPRIATION ART
 
-There is a folder entitled `pop_art`, which contains a file called \__init__.py and a folder for [images](pop_art/images). 
+i created my own image for this program
 
-Put the `base` image you want to use in the `images/` folder. 
+---------------------------------------------------------------------------------------------------------
 
-The default base image is a photo of Bill Nye by Ed Schipul which has been taken from [WikiMedia Commons](https://commons.wikimedia.org/wiki/File:Bill_Nye.jpg). 
+DOCUMENTATION
 
-Simply, execute this file as a python script to run the game. 
+random.randrange - https://docs.python.org/3/library/random.html
+A peer suggested to import random 
 
-From the root folder:
+Image.paste -  https://pillow.readthedocs.io/en/3.1.x/reference/Image.html#PIL.Image.merge
 
-`python pop_art/__init__.py`
+Image.crop - https://www.geeksforgeeks.org/python-pil-image-crop-method/
 
-A window should appear. Press `ENTER` to execute the program and admire the art!
+Image.new - https://code-maven.com/create-images-with-python-pil-pillow
 
-## Licensing Information
+---------------------------------------------------------------------------------------------------------
+LICENCE 
 
-The MIT license has been selected for its simplicity, to be as permissive as possible,
-and for its ability to maintain attribution as the license notice must be included in
-any copies of the code. This includes in commercial use of the code. It therefore 
-enables the widest possible useage of the code whilst recognising the original author
-and their rights.
+The MIT license has been selected because it's simple, also to allow people to improve my program.
+
+---------------------------------------------------------------------------------------------------------
+
+improvments 
+
+i would like to incluse a path that can be randomly generated that will connect from one end to the other ( but i didn't know how to)
+
